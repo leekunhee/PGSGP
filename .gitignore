@@ -55,3 +55,7 @@ captures/
 # Uncomment the following lines if you do not want to check your keystore files in.
 #*.jks
 #*.keystore
+.DS_Store
+.idea/*
+app/.DS_Store
+app/.idea/*

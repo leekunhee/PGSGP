@@ -6,6 +6,7 @@ import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.Scopes
@@ -203,6 +204,7 @@ class PlayGameServicesGodot(godot: Godot) : GodotPlugin(godot), AchievementsList
             if (requestProfile)
                 signInOptionsBuilder.requestProfile()
             signInOptionsBuilder.requestId()
+            signInOptionsBuilder.requestServerAuthCode(android.R.string.default_web_client_id)
             signInOptionsBuilder.build()
         }
 

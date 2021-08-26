@@ -26,7 +26,7 @@ class SignInController(
     }
 
     fun signIn(googleSignInClient: GoogleSignInClient) {
-        val userProfile = UserProfile(null, null, null, null)
+        val userProfile = UserProfile(null, null, null, null, null)
         val connection: Pair<Boolean, UserProfile> = connectionController.isConnected()
         if (connection.first) {
             Log.i("godot","Using cached signin data")
@@ -45,6 +45,7 @@ class SignInController(
                                 it.email = googleSignInAccount.email
                                 it.token = googleSignInAccount.idToken
                                 it.id = googleSignInAccount.id
+                                it.auth = googleSignInAccount.serverAuthCode
                             }
                         }
 
@@ -59,7 +60,7 @@ class SignInController(
     }
 
     fun onSignInActivityResult(googleSignInResult: GoogleSignInResult?) {
-        val userProfile = UserProfile(null, null, null, null)
+        val userProfile = UserProfile(null, null, null, null, null)
         if (googleSignInResult != null && googleSignInResult.isSuccess) {
             val googleSignInAccount = googleSignInResult.signInAccount
             if (googleSignInAccount != null) {
@@ -68,6 +69,7 @@ class SignInController(
                     it.email = googleSignInAccount.email
                     it.token = googleSignInAccount.idToken
                     it.id = googleSignInAccount.id
+                    it.auth = googleSignInAccount.serverAuthCode
                 }
             }
             enablePopUps()
